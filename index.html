@@ -631,22 +631,22 @@ class AmbientParticle {
     this.x = Math.random() * W;
     this.y = this.baseY;
     if (layer === 'far') {
-      this.radius = 0.3 + Math.random() * 0.7;       // 0.3–1px
-      this.speed = 0.03 + Math.random() * 0.05;      // very slow
-      this.baseAlpha = 0.08 + Math.random() * 0.07;  // very dim
+      this.radius = 0.8 + Math.random() * 1.2;       // 0.8–2px
+      this.speed = 0.008 + Math.random() * 0.012;    // matched to memory speed
+      this.baseAlpha = 0.1 + Math.random() * 0.1;    // dim but visible
     } else { // near
-      this.radius = 1 + Math.random() * 1.5;         // 1–2.5px
-      this.speed = 0.3 + Math.random() * 0.2;        // faster
-      this.baseAlpha = 0.2 + Math.random() * 0.2;    // brighter
+      this.radius = 1.5 + Math.random() * 2;         // 1.5–3.5px
+      this.speed = 0.012 + Math.random() * 0.016;    // slightly faster than far, still slow
+      this.baseAlpha = 0.25 + Math.random() * 0.2;   // brighter
     }
     this.alpha = this.baseAlpha;
     this.color = AMBIENT_PALETTE[Math.floor(Math.random() * AMBIENT_PALETTE.length)];
     this.phase = Math.random() * Math.PI * 2;
-    this.amplitude = 4 + Math.random() * 14;
-    this.frequency = 0.2 + Math.random() * 0.3;
+    this.amplitude = 2 + Math.random() * 6;
+    this.frequency = 0.012 + Math.random() * 0.02;
     // Twinkle / flicker
     this.twinklePhase = Math.random() * Math.PI * 2;
-    this.twinkleSpeed = 0.4 + Math.random() * 1.2;
+    this.twinkleSpeed = 0.06 + Math.random() * 0.15;
     // Velocity offsets for mouse scatter
     this.vx = 0;
     this.vy = 0;
@@ -663,7 +663,7 @@ class AmbientParticle {
     }
     // Gentle vertical drift (sinusoidal)
     this.phase += 0.0015 * dt;
-    this.y = this.baseY + Math.sin(this.phase + time * this.frequency * 60) * this.amplitude + this.vy;
+    this.y = this.baseY + Math.sin(this.phase + time * this.frequency * 1.5) * this.amplitude + this.vy;
     // Twinkle / flicker
     this.twinklePhase += this.twinkleSpeed * dt * 0.01;
     const tw = 0.55 + 0.45 * (Math.sin(this.twinklePhase) * 0.5 + 0.5);
